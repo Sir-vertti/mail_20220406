@@ -5,71 +5,104 @@ import 'package:flutter/material.dart';
 void main() => runApp(const ListTileApp());
 
 class ListTileApp extends StatelessWidget {
-  const ListTileApp({super.key});
+  const ListTileApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       home: const ListTileExample(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class ListTileExample extends StatelessWidget {
-  const ListTileExample({super.key});
+  const ListTileExample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ListTile Sample')),
-      body: ListView(
-        children: const <Widget>[
-          Card(child: ListTile(title: Text('One-line ListTile'))),
-          Card(
-            child: ListTile(
-              leading: FlutterLogo(),
-              title: Text('One-line with leading widget'),
-            ),
+      appBar: AppBar(title: const Text('Mailboxes')),
+      body: Stack(
+        children: [
+          ListView(
+            children: const <Widget>[
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.calendar_today),
+                  title: Text('Today'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.mark_unread_chat_alt),
+                  title: Text('Unread'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.inbox),
+                  title: Text('Inbox'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.archive),
+                  title: Text('Archive'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.delete),
+                  title: Text('Junk'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.delete_outline),
+                  title: Text('Trash'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              Card(
+                color: Colors.transparent, // Set the color to white
+                child: ListTile(
+                  tileColor: Colors.transparent,
+                  title: Text('Icloud'),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+            ],
           ),
-          Card(
-            child: ListTile(
-              title: Text('One-line with trailing widget'),
-              trailing: Icon(Icons.more_vert),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: FlutterLogo(),
-              title: Text('One-line with both widgets'),
-              trailing: Icon(Icons.more_vert),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('One-line dense ListTile'),
-              dense: true,
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: FlutterLogo(size: 56.0),
-              title: Text('Two-line ListTile'),
-              subtitle: Text('Here is a second line'),
-              trailing: Icon(Icons.more_vert),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: FlutterLogo(size: 72.0),
-              title: Text('Three-line ListTile'),
-              subtitle:
-                  Text('A sufficiently long subtitle warrants three lines.'),
-              trailing: Icon(Icons.more_vert),
-              isThreeLine: true,
+          const Positioned(
+            top: 8.0, // Ajusta la distancia desde la parte superior
+            right: 16.0, // Ajusta la distancia desde la derecha
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Edit',
+                style: TextStyle(fontSize: 18),
+              ),
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: const BottomAppBar(
+        child: SizedBox(
+          height: 50,
+          child: Center(
+            child: Text(
+              'uploaded just now',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        ),
       ),
     );
   }
